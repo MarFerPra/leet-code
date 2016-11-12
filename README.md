@@ -1,2 +1,2 @@
-# leet-code
-My solutions to LeetCode coding problems.
+# LeetCode
+My solutions to [LeetCode](https://leetcode.com/) coding problems.
