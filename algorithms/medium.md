@@ -90,3 +90,65 @@ public class Solution {
     }
 }
 ```
+
+
+#### Reverse Linked List II
+
+Reverse a linked list from position m to n. Do it in-place and in one-pass.
+
+**(NOT FINISHED)**
+
+```
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public ListNode reverseBetween(ListNode head, int m, int n) {
+
+        if( m == n ) return head;
+
+        int currentNodeIndex = 1;
+        ListNode startNode = head;
+        ListNode beforeStartNode = null;
+
+        while( m > currentNodeIndex && startNode.next != null ){
+            beforeStartNode = startNode;
+            startNode = startNode.next;
+            currentNodeIndex++;
+        }
+
+        if(beforeStartNode == null) beforeStartNode = startNode;
+
+        ListNode previous = null;
+        ListNode current = startNode;
+        ListNode next, lastNode;
+
+        while( current != null && currentNodeIndex <= n){
+            currentNodeIndex++;
+
+            next = current.next;
+            lastNode = previous;
+            current.next = previous;
+
+
+            previous = current;
+            current = next;
+
+            if(currentNodeIndex > n) lastNode.next = next;
+        }
+
+        if(beforeStartNode != null) {
+            beforeStartNode.next = previous;
+            return beforeStartNode;
+        } else {
+            return previous;
+        }
+
+    }
+}
+```
